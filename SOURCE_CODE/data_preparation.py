@@ -1,0 +1,114 @@
+"""
+Data preparation module for creating training and test datasets
+"""
+
+import json
+from pathlib import Path
+from typing import List, Dict, Any
+import random
+
+from config import DATA_DIR, TRAINING_DATA_PATH, TEST_DATA_PATH
+
+
+class DataPreparator:
+    """Prepare and manage training/test data for fine-tuning"""
+    
+    def __init__(self):
+        self.data_dir = DATA_DIR
+        self.training_path = TRAINING_DATA_PATH
+        self.test_path = TEST_DATA_PATH
+        
+    def create_sample_academic_dataset(self) -> List[Dict[str, Any]]:
+        """
+        Create a sample academic paper summarization dataset
+        This simulates a real-world task of summarizing research papers
+        """
+        sample_data = [
+            {
+                "input": "This paper presents a novel deep learning approach for natural language understanding. We introduce a transformer-based architecture that incorporates multi-head attention mechanisms. Our method achieves state-of-the-art performance on several benchmark datasets including GLUE and SuperGLUE. The key innovation is a hierarchical attention mechanism that captures both local and global dependencies in text. Experimental results demonstrate improvements of 3.2% and 5.1% on BERTScore and ROUGE-L metrics respectively. We also provide an extensive analysis of the attention patterns learned by our model.",
+                "output": "The paper introduces a transformer-based architecture with hierarchical multi-head attention for NLP. It achieves SOTA on GLUE/SuperGLUE benchmarks with 3.2% and 5.1% improvements in BERTScore and ROUGE-L."
+            },
+            {
+                "input": "We propose a reinforcement learning framework for autonomous driving that combines imitation learning with policy gradient methods. The agent is trained using a two-stage approach: first learning from expert demonstrations, then fine-tuning through self-play. Our experiments on CARLA simulator show significant improvements in urban driving scenarios, reducing collision rate by 40% compared to baseline methods. The framework includes a safety module that monitors trajectory predictions and intervenes when necessary.",
+                "output": "A reinforcement learning framework combines imitation learning and policy gradients for autonomous driving. Two-stage training reduces CARLA collisions by 40% with a safety intervention module."
+            },
+            {
+                "input": "This study investigates the effectiveness of federated learning for medical image analysis under privacy constraints. We evaluated our approach on chest X-ray and MRI datasets across five hospitals. Results indicate that federated learning maintains performance within 2% of centralized training while preserving patient privacy. The proposed differential privacy mechanism adds minimal overhead and maintains high accuracy. Cross-validation experiments demonstrate robust generalization across different medical institutions.",
+                "output": "Federated learning for medical imaging maintains performance within 2% of centralized training while preserving privacy. Evaluated on X-ray and MRI across 5 hospitals with differential privacy."
+            },
+            {
+                "input": "We present a graph neural network architecture for molecular property prediction that leverages 3D structural information. The model uses message passing neural networks with geometric constraints to capture spatial relationships between atoms. Benchmarks on QM9 and MoleculeNet datasets show that our approach outperforms existing methods by an average of 15% in predicting molecular properties. Ablation studies confirm the importance of incorporating 3D geometry for accurate predictions.",
+                "output": "A graph neural network with 3D geometric constraints for molecular property prediction. Message passing leverages spatial atom relationships, improving QM9/MoleculeNet performance by 15% on average."
+            },
+            {
+                "input": "This research examines the role of attention mechanisms in large language models for few-shot learning. We analyze how different attention configurations affect downstream task performance when provided with limited examples. Our experiments on GPT-series models reveal that adaptive attention scaling significantly improves few-shot capabilities. The proposed method achieves 85% of full fine-tuning performance using only 8 examples per class.",
+                "output": "Analyzes attention mechanisms in LLMs for few-shot learning. Adaptive attention scaling helps GPT models reach 85% of full-tuning performance with just 8 examples per class."
+            },
+            {
+                "input": "We develop a multimodal learning system that combines visual and textual information for video question answering. The architecture uses separate encoders for video frames and text questions, with a cross-attention mechanism to align modalities. Evaluation on MSVD and TGIF-QA datasets shows state-of-the-art results with accuracies of 78.5% and 65.2% respectively. The model successfully handles complex queries requiring both spatial and temporal reasoning.",
+                "output": "Multimodal video QA system with separate visual/text encoders and cross-attention. Achieves 78.5% and 65.2% accuracy on MSVD and TGIF-QA, handling spatial-temporal reasoning."
+            },
+            {
+                "input": "This paper introduces a quantum machine learning framework for optimization problems using variational quantum circuits. We demonstrate applications in portfolio optimization and route planning. The proposed algorithm shows advantages over classical methods for problems with 20+ variables. Benchmarks on IBM quantum simulators achieve solutions within 5% of optimal with 10x faster convergence. Error mitigation techniques are employed to handle noise in current quantum hardware.",
+                "output": "Quantum ML framework with variational circuits for optimization. Outperforms classical methods on 20+ variable problems, achieving 5% optimal solutions 10x faster on IBM simulators."
+            },
+            {
+                "input": "We propose a self-supervised learning approach for representation learning in graph data using contrastive learning. The method creates augmentations through edge dropping and node masking, then learns representations by maximizing agreement between augmented views. Experiments on citation networks and molecular graphs demonstrate competitive performance to supervised methods. The learned representations improve downstream task performance by 12% on average.",
+                "output": "Self-supervised graph representation learning via contrastive augmentation (edge/node masking). Matches supervised performance, improving downstream tasks by 12% on citation and molecular graphs."
+            }
+        ]
+        
+        # Expand with variations
+        expanded_data = []
+        for item in sample_data:
+            # Add original
+            expanded_data.append(item)
+            
+            # Add formatted versions
+            expanded_data.append({
+                "input": f"Abstract: {item['input']}",
+                "output": item['output']
+            })
+            
+            expanded_data.append({
+                "input": item['input'] + "\n\nPlease provide a concise summary.",
+                "output": item['output']
+            })
+        
+        return expanded_data
+    
+    def save_datasets(self, test_split: float = 0.2) -> None:
+        """Create and save training and test datasets"""
+        all_data = self.create_sample_academic_dataset()
+        
+        # Shuffle and split
+        random.seed(42)
+        random.shuffle(all_data)
+        
+        split_idx = int(len(all_data) * (1 - test_split))
+        training_data = all_data[:split_idx]
+        test_data = all_data[split_idx:]
+        
+        # Save datasets
+        with open(self.training_path, 'w', encoding='utf-8') as f:
+            json.dump(training_data, f, indent=2, ensure_ascii=False)
+        
+        with open(self.test_path, 'w', encoding='utf-8') as f:
+            json.dump(test_data, f, indent=2, ensure_ascii=False)
+        
+        print(f"✓ Created training dataset: {len(training_data)} samples")
+        print(f"✓ Created test dataset: {len(test_data)} samples")
+        print(f"✓ Saved to: {self.training_path}")
+        print(f"✓ Saved to: {self.test_path}")
+    
+    def load_dataset(self, dataset_type: str = "train") -> List[Dict[str, Any]]:
+        """Load a dataset"""
+        path = self.training_path if dataset_type == "train" else self.test_path
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+
+
+if __name__ == "__main__":
+    preparator = DataPreparator()
+    preparator.save_datasets()
+

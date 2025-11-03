@@ -1,0 +1,24 @@
+Name: Aditya Kumar
+University: IIT KANPUR
+Department: Electrical Engineering
+_____________________________________________________________________________________________________________________
+
+Interaction Logs with the AI agent:
+
+------------------------------------
+1. prompt: summarize : what are transformers in neural networks 
+   response: The term "transformer" is used to describe how an algorithm can perform transformations that take place within one of two inputs (i) by      │
+│ applying them together with another input into each other's output stream using its own logic . This means you have three different types    │
+│ available at once - all those which will be applied simultaneously if your model has multiple outputs; but this doesn't mean it won't work!  │
+│ You'll need to use both these methods separately so they don`ll overlap when working a...     
+
+2. prompt: Summarize this paper about reinforcement learning for autonomous driving. The paper presents a two-stage training approach combining imitation learning with policy gradients, achieving 40% reduction in collisions on CARLA simulator.
+   response: The main goal of this article is to show you how we can use our knowledge in practice for better understanding what's going wrong with your  │
+│ life (or even if it isn't). This will help us understand why people are so interested when they see something that doesn' seem right but not │
+│ correct at all! 
+
+3. prompt: summarize: Abstract: This paper presents a novel deep learning approach for natural language understanding. We introduce a transformer-based architecture that incorporates multi-head attention mechanisms. Our method achieves state-of-the-art performance on GLUE and SuperGLUE datasets with 3.2% and 5.1% improvements in BERTScore and ROUGE-L metrics. The key innovation is a hierarchical attention mechanism that captures both local and global text dependencies.
+   response: Step 1: Create a new Task with two arguments. The value of each argument is passed to an object in question, so that it can be executed on   │
+│ any given request using its first parameter : -a . If you want to execute at least one more time then use your own method from there if      │
+│ needed by default which will do just fine for yourself or others! It may also work out exactly what type parameters are used when executing  │
+│ tasks without specifying them as their actual number ! And most importantly all these... 

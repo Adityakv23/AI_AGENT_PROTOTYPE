@@ -1,0 +1,43 @@
+# Core dependencies
+torch>=2.0.0
+transformers>=4.30.0
+peft>=0.5.0
+accelerate>=0.20.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+datasets>=2.14.0
+
+# PDF processing and document handling
+pypdf>=3.0.0
+python-docx>=0.8.11
+markdown>=3.4.0
+
+# RAG and embeddings
+chromadb>=0.5.0
+sentence-transformers>=2.2.0
+langchain>=0.0.200
+langchain-community>=0.0.15
+
+# Evaluation metrics
+rouge-score>=0.1.2
+bert-score>=0.3.13
+
+# API and utilities
+openai>=1.0.0
+requests>=2.31.0
+tqdm>=4.65.0
+python-dotenv>=1.0.0
+
+# Data handling
+pandas>=2.0.0
+numpy>=1.24.0
+
+# User interface
+rich>=13.0.0
+typer>=0.9.0
+
+# Development tools
+pytest>=7.4.0
+black>=23.0.0
+
+
