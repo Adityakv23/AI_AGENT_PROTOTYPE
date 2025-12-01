@@ -6,14 +6,14 @@
 
 ## 📋 Project Overview
 
-This project implements an AI agent prototype that automates the task of summarizing academic research papers. The agent uses advanced AI techniques including fine-tuned models, multi-agent collaboration, RAG (Retrieval-Augmented Generation), and comprehensive evaluation metrics.
+This project implements an AI agent prototype that automates the task of summarizing academic research papers. The agent uses advanced AI techniques, including fine-tuned models, multi-agent collaboration, RAG (Retrieval-Augmented Generation), and comprehensive evaluation metrics.
 
 ### **Core Task**
 The manual task being automated is **academic paper summarization** - a time-consuming but critical task for researchers, students, and academics who need to quickly understand and digest large volumes of research literature.
 
-## 🎯 Core Features (Mandatory)
+## Core Features (Mandatory)
 
-### 1. Fine-Tuned Model with LoRA ✅
+### 1. Fine-Tuned Model with LoRA 
 
 **Why LoRA?**
 - **Parameter Efficiency**: Trains less than 1% of total parameters versus full fine-tuning
@@ -31,7 +31,7 @@ The manual task being automated is **academic paper summarization** - a time-con
   - Target Modules: attention layers (c_attn, c_proj, q_attn)
   - Dropout: 0.1
 
-### 2. Evaluation Metrics ✅
+### 2. Evaluation Metrics 
 
 Comprehensive evaluation system measuring:
 - **ROUGE Scores**: N-gram overlap (ROUGE-1, ROUGE-2, ROUGE-L)
@@ -39,9 +39,9 @@ Comprehensive evaluation system measuring:
 - **Compression Ratio**: Summary length relative to original text
 - **Quality Scoring**: Task-specific metrics for academic summaries
 
-## 🚀 Optional Features (Bonus Points)
+## Optional Features (Bonus Points)
 
-### 1. Multi-Agent Collaboration ✅
+### 1. Multi-Agent Collaboration 
 
 **Architecture:**
 - **Planner Agent**: Breaks down tasks into actionable sequential steps
@@ -53,7 +53,7 @@ Comprehensive evaluation system measuring:
 - Iterative refinement based on feedback
 - Specialized agents for different capabilities
 
-### 2. RAG Integration ✅
+### 2. RAG Integration 
 
 **Retrieval-Augmented Generation** for enhanced document understanding:
 - Vector database (ChromaDB) with semantic embeddings
@@ -61,7 +61,7 @@ Comprehensive evaluation system measuring:
 - Context augmentation for improved summarization
 - Knowledge base built from academic literature
 
-### 3. User Interface ✅
+### 3. User Interface 
 
 **CLI (Command-Line Interface)** with rich output:
 - Interactive mode for real-time task processing
@@ -69,7 +69,7 @@ Comprehensive evaluation system measuring:
 - Status monitoring and configuration management
 - Evaluation and benchmarking tools
 
-## 🏗️ Architecture
+## Architecture
 
 ### System Components
 
@@ -105,11 +105,11 @@ Comprehensive evaluation system measuring:
 1. **Input Processing**: User provides academic paper or query
 2. **Planning**: Planner Agent breaks down into steps
 3. **Context Retrieval**: RAG system augments with relevant information
-4. **Execution**: Executor Agent generates summaries using fine-tuned model
+4. **Execution**: Executor Agent generates summaries using a fine-tuned model
 5. **Evaluation**: Quality metrics computed
 6. **Output**: Structured summary delivered
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 i'mbesidesyou/
@@ -150,7 +150,7 @@ i'mbesidesyou/
     └── evaluation_report.json
 ```
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 
@@ -186,7 +186,7 @@ python cli.py train
 python cli.py setup-rag
 ```
 
-## 🎮 Usage
+## Usage
 
 ### Interactive Mode
 
@@ -224,7 +224,7 @@ python cli.py status
 python cli.py demo
 ```
 
-## 📊 Evaluation Results
+## Evaluation Results
 
 ### Metrics Overview
 
@@ -240,7 +240,7 @@ python cli.py demo
 - **BERTScore**: Captures semantic meaning beyond n-grams
 - **Compression Ratio**: Ensures summaries are concise (goal: <20% of original)
 
-## 🎓 Academic Paper Summarization: Data Science Report
+## Academic Paper Summarization: Data Science Report
 
 ### Fine-Tuning Setup
 
@@ -257,7 +257,7 @@ python cli.py demo
 - LoRA Alpha: 16
 
 **Why This Configuration**:
-- DistilGPT2 provides good balance of performance and efficiency
+- DistilGPT2 provides a good balance of performance and efficiency
 - LoRA reduces trainable parameters from 82M to <500K (<1%)
 - Task-specific adaptation for academic language and structure
 
@@ -277,7 +277,7 @@ python cli.py demo
 
 *Note: Full evaluation results will be generated after training*
 
-## 🔧 Configuration
+## Configuration
 
 Edit `config.py` to customize:
 - Model parameters
@@ -285,7 +285,7 @@ Edit `config.py` to customize:
 - RAG settings
 - Evaluation metrics
 
-## 🤝 References
+## References
 
 - [Building Effective Agents (Anthropic)](https://www.anthropic.com/engineering/building-effective-agents)
 - [AI Agent Design Pattern Paper](https://arxiv.org/pdf/2405.10467)
@@ -293,11 +293,10 @@ Edit `config.py` to customize:
 - PEFT Library
 - RAG Research Papers
 
-## 📄 License
+## License
 
 This project is developed for academic purposes as part of the Data Science Internship Assignment.
 
 ---
 
-**Developed with ❤️ for automating academic research workflows**
 
